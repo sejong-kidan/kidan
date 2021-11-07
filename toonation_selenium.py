@@ -25,24 +25,25 @@ def test_donation_all():
         time.sleep(1)
 
         # 프로필 숨기기
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[7]/div/div/div').click()
+        driver.find_element(By.CSS_SELECTOR, ".SwitchOff > div").click()
         time.sleep(1)
 
         # 후원 닉네임 변경
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[8]/div/div/div/div/div[1]/input').clear()
+        name = driver.find_element(By.CSS_SELECTOR, ".InputValidate input")
+        name.clear()
         time.sleep(1)
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[8]/div/div/div/div/div[1]/input').send_keys('test')
+        name.send_keys('test')
         time.sleep(1)
 
         voices = ["초롱"] # dev일 경우 "초롱", "찬구", "투나", "테스트" 사용 / live일 경우 "초롱", "찬구", "투나", "마왕루야" 사용
 
         for voice in voices:
             # 텍스트 내용 입력
-            driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[10]/div/div/textarea').send_keys("test")
+            driver.find(By.CSS_SELECTOR, "textarea").send_keys("test")
             time.sleep(1)
 
             # 보이스 선택
-            driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div/div[1]').click()
+            driver.find_element(By.CSS_SELECTOR, ".DropdownContent").click()
             time.sleep(1)
             driver.find_element(By.CSS_SELECTOR, ".TabHostList > .TabItem:nth-child(2)").click()
             time.sleep(2)
@@ -62,7 +63,7 @@ def test_donation_all():
 
             # 후원하기 버튼
             time.sleep(1)
-            driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[14]/button').click()
+            driver.find_element(By.CSS_SELECTOR, ".Button-primary:nth-child(1)").click()
             time.sleep(5)
 
         # 차단된 보이스 후원을 위한 환경 준비
