@@ -9,19 +9,19 @@ import time
 def test_donation_all():
     try:
         driver = webdriver.Chrome()
-        # live = 'https://toon.at/donate/kidan'
-        dev = 'https://dev2.toon.at:8443/donate/kidantest'
-        # live_bypass = 'https://toon.at/tools/bypass/donator/1/613853'
-        dev_bypass = 'https://dev2.toon.at:8443/tools/bypass/donator/1/284033'
+        live = 'https://toon.at/donate/kidan'
+        # dev = 'https://dev2.toon.at:8443/donate/kidantest'
+        live_bypass = 'https://toon.at/tools/bypass/donator/1/613853'
+        # dev_bypass = 'https://dev2.toon.at:8443/tools/bypass/donator/1/284033'
 
-        driver.get(dev)
+        driver.get(live)
         time.sleep(1)
         driver.maximize_window()
 
-        driver.get(dev_bypass)
+        driver.get(live_bypass)
         time.sleep(1)
 
-        driver.get(dev)
+        driver.get(live)
         time.sleep(1)
 
         # 프로필 숨기기
@@ -43,22 +43,22 @@ def test_donation_all():
             time.sleep(1)
 
             # 보이스 선택
-            driver.find_element(By.CSS_SELECTOR, ".DropdownContent").click()
+            driver.find_element(By.CSS_SELECTOR, ".DropdownContent").click() # 보이스 선택 팝업으로 이동
             time.sleep(1)
-            driver.find_element(By.CSS_SELECTOR, ".TabHostList > .TabItem:nth-child(2)").click()
+            driver.find_element(By.CSS_SELECTOR, ".TabHostList > .TabItem:nth-child(2)").click() # 전체로 변경
             time.sleep(2)
-            search = driver.find_element(By.CSS_SELECTOR, ".VoiceListSearch__WdfXz input")
+            search = driver.find_element(By.CSS_SELECTOR, ".VoiceListSearch__WdfXz input") # 보이스 선택 팝업에서 검색창 지우기 및 입력
             search.clear()
             time.sleep(1)
             search.send_keys(voice,(Keys.ENTER))
             time.sleep(1)
-            driver.find_element(By.CSS_SELECTOR, ".VoiceListImage__3Mx42 > img").click()
+            driver.find_element(By.CSS_SELECTOR, ".VoiceListImage__3Mx42 > img").click() # 검색된 보이스 선택
             # try:
             #     driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div[2]/div/div[2]/div/div[2]/div/div/div[1]').click()
             # except Exception:
             #     print('보이스를 찾을수 없음', voice)
             time.sleep(1)
-            driver.find_element(By.CSS_SELECTOR, ".Square").click()
+            driver.find_element(By.CSS_SELECTOR, ".Square").click() # 사용하기 선택
             time.sleep(1)
 
             # 후원하기 버튼
@@ -67,11 +67,12 @@ def test_donation_all():
             time.sleep(5)
 
         # 차단된 보이스 후원을 위한 환경 준비
-        driver.execute_script('window.open("https://dev2.toon.at:8443/streamer/login");') # dev서버
-        # driver.execute_script('window.open("https://toon.at/streamer/login");') # live서버
+        # driver.execute_script('window.open("https://dev2.toon.at:8443/streamer/login");') # dev서버
+        driver.execute_script('window.open("https://toon.at/streamer/login");') # live서버
         time.sleep(3)
 
-        driver.execute_script('window.open("https://dev2.toon.at:8443/tools/bypass/streamer/1/24306");') # dev서버 크리에이터 바이패스
+        driver.execute_script('window.open("https://toon.at/tools/bypass/streamer/1/55154");') # live서버 크리에이터 바이패스
+        # driver.execute_script('window.open("https://dev2.toon.at:8443/tools/bypass/streamer/1/24306");') # dev서버 크리에이터 바이패스
         time.sleep(1)
 
         # 크리에이터 탭으로 이동
@@ -118,25 +119,24 @@ def test_donation_all():
         time.sleep(2)
 
         # 차단된 보이스로 후원
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[10]/div/div/textarea').send_keys("test")
+        driver.find(By.CSS_SELECTOR, "textarea").send_keys("test") # 텍스트 내용 입력
         time.sleep(1)
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div/div[1]').click()
+        driver.find_element(By.CSS_SELECTOR, ".DropdownContent").click() # 보이스 선택 팝업으로 이동
         time.sleep(1)
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div[2]/div/div[2]/div/div[1]/div/div/div/div/div/div[2]').click()
-        time.sleep(1)
-        research = driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div[2]/div/div[1]/div/div/div/div/div/input')
+        driver.find_element(By.CSS_SELECTOR, ".TabHostList > .TabItem:nth-child(2)").click() # 전체로 변경
+        time.sleep(2)
+        research = driver.find_element(By.CSS_SELECTOR, ".VoiceListSearch__WdfXz input") # 보이스 선택 팝업에서 검색창 지우기 및 입력
         research.clear()
         time.sleep(1)
         research.send_keys("밀라",(Keys.ENTER))
         time.sleep(1)
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div[2]/div/div[2]/div/div[2]/div/div/div[1]').click()
+        driver.find_element(By.CSS_SELECTOR, ".VoiceListImage__3Mx42 > img").click() # 검색된 보이스 선택
         time.sleep(1)
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div[2]/div/div[3]/div[2]/button').click()
+        driver.find_element(By.CSS_SELECTOR, ".Square").click() # 사용하기 선택
         time.sleep(1)
-        
-        driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[14]/button').click()
+        driver.find_element(By.CSS_SELECTOR, ".Button-primary:nth-child(1)").click() # 후원하기
         time.sleep(3)
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/button').click()
+        driver.find_element_by_xpath('/html/body/div[2]/div/div[3]/button').click() # 보이스 에러 확인
         time.sleep(1)
 
         # 차단된 보이스 다시 원복
