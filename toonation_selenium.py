@@ -25,11 +25,11 @@ def test_donation_all():
         time.sleep(1)
 
         # 프로필 숨기기
-        driver.find_element(By.CSS_SELECTOR, ".SwitchOff > div").click()
+        driver.find_element(By.CSS_SELECTOR, "#baselayout > div > div > div > div:nth-child(7) > div > div > div").click()
         time.sleep(1)
 
         # 후원 닉네임 변경
-        name = driver.find_element(By.CSS_SELECTOR, ".InputValidate input")
+        name = driver.find_element(By.CSS_SELECTOR, "#baselayout > div > div > div > div:nth-child(8) > div > div > div > div > div.InputContainer > input[type=text]")
         name.clear()
         time.sleep(1)
         name.send_keys('test')
@@ -39,13 +39,13 @@ def test_donation_all():
 
         for voice in voices:
             # 텍스트 내용 입력
-            driver.find(By.CSS_SELECTOR, "textarea").send_keys("test")
+            driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[10]/div/div/textarea').send_keys("test")
             time.sleep(1)
 
             # 보이스 선택
             driver.find_element(By.CSS_SELECTOR, ".DropdownContent").click() # 보이스 선택 팝업으로 이동
             time.sleep(1)
-            driver.find_element(By.CSS_SELECTOR, ".TabHostList > .TabItem:nth-child(2)").click() # 전체로 변경
+            driver.find_element_by_xpath('//*[@id="baselayout"]/div/div/div/div[11]/div/div/div[2]/div/div/div[2]/div/div[1]/div/div[2]').click() # 전체로 변경
             time.sleep(2)
             search = driver.find_element(By.CSS_SELECTOR, ".VoiceListSearch__WdfXz input") # 보이스 선택 팝업에서 검색창 지우기 및 입력
             search.clear()

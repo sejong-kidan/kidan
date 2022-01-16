@@ -17,10 +17,12 @@ def test_youtube_donation():
         driver.maximize_window()
 
         # 후원페이지로 이동
-        driver.execute_script('window.open("https://dev2.toon.at:8443/donate/kidantest");')
+        # driver.execute_script('window.open("https://dev2.toon.at:8443/donate/kidantest");')        
+        driver.execute_script('window.open("https://toon.at/donate/kidan");')
         time.sleep(1)
 
-        driver.execute_script('window.open("https://dev2.toon.at:8443/tools/bypass/donator/1/284033");')
+        # driver.execute_script('window.open("https://dev2.toon.at:8443/tools/bypass/donator/1/284033");')
+        driver.execute_script('window.open("https://toon.at/tools/bypass/donator/1/613853");')
         time.sleep(1)
 
         # 후원페이지 탭으로 이동
@@ -47,7 +49,7 @@ def test_youtube_donation():
         time.sleep(1)
 
         count = 0
-        while count < 5:
+        while count < 3:
 
             # 유튜브 뮤트
             mute = driver.find_element(By.CSS_SELECTOR, ".ytp-mute-button")
