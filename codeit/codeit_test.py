@@ -395,3 +395,57 @@ while ii <= 4:
         ii += 1
 if ii == 4:
     print("아쉽습니다. 정답은 {}입니다.".format(random_number))
+    
+with open('codeit/data/chicken.txt', 'r', encoding='UTF-8') as f:
+    for line in f:
+        print(line)
+        
+with open('codeit/data/chicken.txt', 'r', encoding='UTF-8') as f:
+    for line in f:
+        print(line.strip())
+        
+my_string = "1. 2. 3. 4. 5. 6"
+print(my_string.split(". "))
+
+full_name = "Kim, Yuna"
+name_date = full_name.split(", ")
+last_name = name_date[0]
+first_name = name_date[1]
+
+print(first_name, last_name)
+
+
+print("     \n\n    2   \t  3   \n  5 7 11  \n\n".split())
+
+numbers = "     \n\n    2   \t  3   \n  5 7 11  \n\n".split()
+print(int(numbers[0]) + int(numbers[1]))
+
+i = 0
+count = 1
+
+with open('codeit/data/chicken.txt', 'r', encoding='UTF-8') as in_file:
+    for line in in_file:
+        data = line.strip().split(": ")
+        revenue = int(data[1])  # 그날의 매출
+        i = revenue + i
+        if count == 31:
+            print(i / 31)
+        else:
+            count += 1
+
+with open('new_file.txt', 'a') as f:
+    f.write("Hello world!\n")
+    f.write("My name is Codeit.\n")
+    
+with open('vocabulary.txt', 'w') as f:
+    while True:
+        English = input("영어 단어를 입력하세요: ")
+        if English == 'q':
+            break
+        else: 
+            f.write('{}: '.format(English))
+        Korean = input("한국어 뜻을 입력하세요: ")
+        if Korean == 'q':
+            break
+        else:
+            f.write("{}\n".format(Korean))
